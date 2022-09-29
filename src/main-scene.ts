@@ -17,7 +17,6 @@ export class MainScene extends Phaser.Scene {
   healthMin = 0;
   healthMax = 3000;
   healthBar!: GameObjects.Rectangle;
-  healthBarMax = 360;
 
   foods: any = {
     apple: 60,
@@ -33,15 +32,11 @@ export class MainScene extends Phaser.Scene {
   };
 
   timeSinceStart = 0;
-  timeSinceFoodLimit = 1000;
+  timeSinceFoodLimit = 0;
   timeSinceFood: number | undefined = undefined;
 
   constructor() {
     super('main-scene');
-  }
-
-  preload(): void {
-    this.load.multiatlas('sprites', `/assets/sprites@1.json?v={VERSJON}`, '/assets');
   }
 
   create(): void {
@@ -63,7 +58,8 @@ export class MainScene extends Phaser.Scene {
     this.scoreText = this.add.text(16, 16, 'kcal: 0', { fontSize: '24px', color: '#000' }).setDepth(1);
     this.kcalInfoText = this.add
       .text(healthBarContainer.x + healthBarContainer.width / 2 + 16, 16, '', { fontSize: '24px', color: '#000' })
-      .setDepth(1);
+      .setDepth(1)
+      .setOrigin(0.5, 0.5);
     this.kcalText = this.add.text(healthBarContainer.x, 16, '', { fontSize: '24px', color: '#000' }).setDepth(1).setOrigin(0.5, 0);
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -73,7 +69,7 @@ export class MainScene extends Phaser.Scene {
 
     this.hero = this.physics.add.sprite(0, 0, 'sprites', 'hero-001.png');
     this.hero.setPosition(this.scale.width / 2, this.scale.height - this.hero.height / 2 - groundHeight);
-    this.hero.setBounce(0.2);
+    this.hero.setBounce(0.1);
     this.hero.setCollideWorldBounds(true);
     this.createAnimations();
 
@@ -97,22 +93,50 @@ export class MainScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    if (this.cursors.left.isDown) {
-      this.hero.setVelocityX(-this.speedX);
-      this.hero.anims.play('walk', true);
-      this.hero.setFlipX(true);
-    } else if (this.cursors.right.isDown) {
-      this.hero.setVelocityX(this.speedX);
-      this.hero.anims.play('walk', true);
-      this.hero.setFlipX(false);
+    let losingWeight = 2;
+
+    if (this.input.activePointer.isDown) {
+      const { x } = this.input.activePointer;
+      if (Math.abs(x - this.hero.x) < 10) {
+        this.hero.setVelocityX(0);
+        this.hero.anims.play('stand', true);
+        this.hero.setFlipX(false);
+        losingWeight = 2;
+      } else if (x < this.hero.x) {
+        this.hero.setVelocityX(-this.speedX);
+        this.hero.anims.play('walk', true);
+        this.hero.setFlipX(true);
+        losingWeight = 4;
+      } else if (x > this.hero.x) {
+        this.hero.setVelocityX(this.speedX);
+        this.hero.anims.play('walk', true);
+        this.hero.setFlipX(false);
+        losingWeight = 4;
+      }
     } else {
-      this.hero.setVelocityX(0);
-      this.hero.anims.play('stand', true);
-      this.hero.setFlipX(false);
+      if (this.cursors.left.isDown) {
+        this.hero.setVelocityX(-this.speedX);
+        this.hero.anims.play('walk', true);
+        this.hero.setFlipX(true);
+        losingWeight = 4;
+      } else if (this.cursors.right.isDown) {
+        this.hero.setVelocityX(this.speedX);
+        this.hero.anims.play('walk', true);
+        this.hero.setFlipX(false);
+        losingWeight = 4;
+      } else {
+        this.hero.setVelocityX(0);
+        this.hero.anims.play('stand', true);
+        this.hero.setFlipX(false);
+        losingWeight = 2;
+      }
     }
 
-    // if (this.cursors.up.isDown && this.hero.body.touching.down) {
-    //   this.hero.setVelocityY(this.speedY);
+    // if (this.cursors.up.isDown) {
+    //   if (this.hero.body.touching.down) {
+    //     this.hero.setVelocityY(this.speedY);
+    //   }
+    //   losingWeight = 5;
     // }
 
     this.foodGroup.children.iterate((food: any) => {
@@ -129,21 +153,24 @@ export class MainScene extends Phaser.Scene {
     }
 
     const newFoodSpeed = Math.floor(this.timeSinceStart / 5000);
-    this.timeSinceFoodLimit = 1500 - newFoodSpeed * 100;
+    this.timeSinceFoodLimit = 1000 - newFoodSpeed * 150;
     if (this.timeSinceFoodLimit <= 0) {
       this.timeSinceFoodLimit = 250;
     }
-    console.log(newFoodSpeed, this.timeSinceFoodLimit);
 
-    this.health -= 2;
+    this.health -= losingWeight;
 
     this.timeSinceStart += delta;
 
     this.score = this.timeSinceStart / 1000;
     this.scoreText.setText(`time: ${this.score.toFixed(1)}`);
 
-    this.kcalText.setText(`${this.health} kcal`);
+    this.kcalText.setText(`${Math.max(this.health, this.healthMin)} kcal`);
     this.drawHealthBar();
+
+    if (this.health < this.healthMin || this.health > this.healthMax) {
+      this.lose();
+    }
   }
 
   private collectFood(food: any) {
@@ -163,6 +190,8 @@ export class MainScene extends Phaser.Scene {
       quantity: 1,
     });
     this.emitter.explode();
+
+    this.kcalInfoText.setPosition(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
   }
 
   private createAnimations() {
@@ -215,5 +244,18 @@ export class MainScene extends Phaser.Scene {
     } else {
       this.healthBar.setFillStyle(0x00fa00);
     }
+  }
+
+  private lose() {
+    this.scene.pause();
+    this.cameras.main.setBackgroundColor(0xbababa);
+    this.cameras.main.setAlpha(0.5);
+    this.scene.launch('lose-scene', { score: this.score, health: this.health });
+
+    this.score = 0;
+
+    this.health = 1500;
+    this.timeSinceStart = 0;
+    this.timeSinceFood = undefined;
   }
 }

@@ -1,3 +1,5 @@
+import { HomeScene } from './home-scene';
+import { LoseScene } from './lose-scene';
 import { MainScene } from './main-scene';
 
 export function createGameConfig(
@@ -10,7 +12,7 @@ export function createGameConfig(
   const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     // type: Phaser.CANVAS,
-    scene: MainScene,
+    scene: [HomeScene, MainScene, LoseScene],
     width,
     height,
     backgroundColor: 0x87ceeb,
