@@ -1,0 +1,20 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  height: 100%;
+  background-color: #d8d8d7;
+  color: #b3ff80;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+#game canvas {
+  max-width: 800px;
+  max-height: 600px;
+}
