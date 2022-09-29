@@ -1,0 +1,398 @@
+{
+	"textures": [
+		{
+			"image": "sprites@1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 262,
+				"h": 242
+			},
+			"scale": 0.25,
+			"frames": [
+				{
+					"filename": "hero-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 140
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 70,
+						"h": 140
+					}
+				},
+				{
+					"filename": "food-hamburger.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 48
+					},
+					"frame": {
+						"x": 1,
+						"y": 143,
+						"w": 64,
+						"h": 48
+					}
+				},
+				{
+					"filename": "food-bread-egg.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 48,
+						"h": 48
+					},
+					"frame": {
+						"x": 1,
+						"y": 193,
+						"w": 48,
+						"h": 48
+					}
+				},
+				{
+					"filename": "food-bread-salmon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 48,
+						"h": 48
+					},
+					"frame": {
+						"x": 51,
+						"y": 193,
+						"w": 48,
+						"h": 48
+					}
+				},
+				{
+					"filename": "food-banana.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 32
+					},
+					"frame": {
+						"x": 67,
+						"y": 143,
+						"w": 64,
+						"h": 32
+					}
+				},
+				{
+					"filename": "food-chocolate.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 64
+					},
+					"frame": {
+						"x": 101,
+						"y": 177,
+						"w": 32,
+						"h": 64
+					}
+				},
+				{
+					"filename": "hero-003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 140
+					},
+					"frame": {
+						"x": 73,
+						"y": 1,
+						"w": 70,
+						"h": 140
+					}
+				},
+				{
+					"filename": "particle-snowflake-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 133,
+						"y": 143,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "food-apple.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 40,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 40,
+						"h": 40
+					},
+					"frame": {
+						"x": 135,
+						"y": 169,
+						"w": 40,
+						"h": 40
+					}
+				},
+				{
+					"filename": "particle-snowflake-002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 135,
+						"y": 211,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "particle-snowflake-003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 161,
+						"y": 211,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "hero-004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 140
+					},
+					"frame": {
+						"x": 145,
+						"y": 1,
+						"w": 70,
+						"h": 140
+					}
+				},
+				{
+					"filename": "particle-star-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 159,
+						"y": 143,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "food-cola.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 64
+					},
+					"frame": {
+						"x": 185,
+						"y": 143,
+						"w": 24,
+						"h": 64
+					}
+				},
+				{
+					"filename": "food-pringles.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 48
+					},
+					"frame": {
+						"x": 211,
+						"y": 143,
+						"w": 32,
+						"h": 48
+					}
+				},
+				{
+					"filename": "food-ice-cream.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 48
+					},
+					"frame": {
+						"x": 211,
+						"y": 193,
+						"w": 24,
+						"h": 48
+					}
+				},
+				{
+					"filename": "hero-002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 0,
+						"w": 44,
+						"h": 140
+					},
+					"frame": {
+						"x": 217,
+						"y": 1,
+						"w": 44,
+						"h": 140
+					}
+				},
+				{
+					"filename": "food-carrot.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 64
+					},
+					"frame": {
+						"x": 245,
+						"y": 143,
+						"w": 16,
+						"h": 64
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:c7f077d3823cd39ba2d415ea3244cbe2:a2f9e860bc1644eb440091b67ae6dfc3:4a9bf2ba9afc2827dfa178a3fc41fa73$"
+	}
+}
