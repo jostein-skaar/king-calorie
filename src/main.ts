@@ -12,8 +12,8 @@ if (import.meta.env.PROD) {
 const width = 800;
 const height = 600;
 
-console.log('window.inner:', window.innerWidth, 'x', window.innerHeight);
-console.table({ width, height });
+// console.log('window.inner:', window.innerWidth, 'x', window.innerHeight);
+// console.table({ width, height });
 
 const gameConfig = createGameConfig(width, height, isDebug);
 new Phaser.Game(gameConfig);

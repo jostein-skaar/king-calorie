@@ -5,15 +5,7 @@ export class HomeScene extends Phaser.Scene {
     super({ key: 'home-scene' });
   }
 
-  init() {}
-
-  preload(): void {
-    this.load.multiatlas('sprites', `/assets/sprites@1.json?v={VERSJON}`, '/assets');
-  }
-
   create() {
-    console.log('home-scene create()');
-
     this.cursors = this.input.keyboard.createCursorKeys();
     const groundHeight = 75;
     this.add.rectangle(this.scale.width / 2, this.scale.height - groundHeight / 2, this.scale.width, groundHeight, 0x9beb34);

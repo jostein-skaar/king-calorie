@@ -1,6 +1,7 @@
 import { HomeScene } from './home-scene';
 import { LoseScene } from './lose-scene';
 import { MainScene } from './main-scene';
+import { PreloadScene } from './preload-scene';
 
 export function createGameConfig(
   width: number,
@@ -12,7 +13,7 @@ export function createGameConfig(
   const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     // type: Phaser.CANVAS,
-    scene: [HomeScene, MainScene, LoseScene],
+    scene: [PreloadScene, HomeScene, MainScene, LoseScene],
     width,
     height,
     backgroundColor: 0x87ceeb,
