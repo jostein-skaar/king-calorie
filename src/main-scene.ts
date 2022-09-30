@@ -68,7 +68,7 @@ export class MainScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
     this.kcalText = this.add.text(healthBarContainer.x, 16, '', { fontSize: '24px', color: '#000' }).setDepth(1).setOrigin(0.5, 0);
 
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard!.createCursorKeys();
     const groundHeight = 75;
     const ground = this.add.rectangle(this.scale.width / 2, this.scale.height - groundHeight / 2, this.scale.width, groundHeight, 0x9beb34);
     this.physics.add.existing(ground, true);
@@ -147,7 +147,7 @@ export class MainScene extends Phaser.Scene {
     //   losingWeight = 5;
     // }
 
-    this.foodGroup.children.iterate((food: any) => {
+    this.foodGroup.getChildren().forEach((food: any) => {
       if (food.y > this.scale.height + food.height) {
         food.disableBody(true, true);
       }

@@ -36,7 +36,7 @@ export class LoseScene extends Phaser.Scene {
       });
     }, 500);
 
-    this.input.keyboard.once('keydown-' + 'SPACE', () => {
+    this.input.keyboard!.once('keydown-' + 'SPACE', () => {
       clearTimeout(goToHomeSceneTimeout);
       this.scene.start('main-scene');
     });

@@ -6,7 +6,7 @@ export class HomeScene extends Phaser.Scene {
   }
 
   create() {
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard!.createCursorKeys();
     const groundHeight = 75;
     this.add.rectangle(this.scale.width / 2, this.scale.height - groundHeight / 2, this.scale.width, groundHeight, 0x9beb34);
 
@@ -24,7 +24,7 @@ export class HomeScene extends Phaser.Scene {
       .setInteractive()
       .once('pointerdown', () => this.startNewGame());
 
-    this.input.keyboard.once('keydown-' + 'SPACE', () => this.startNewGame());
+    this.input.keyboard!.once('keydown-' + 'SPACE', () => this.startNewGame());
 
     this.input.once('pointerdown', () => this.startNewGame());
 
