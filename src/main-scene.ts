@@ -9,6 +9,7 @@ export class MainScene extends Phaser.Scene {
   speedY = -300;
   foodSpeed = 100;
   score = 0;
+  bestScore = 0;
   scoreText!: GameObjects.Text;
   kcalInfoText!: GameObjects.Text;
   kcalText!: GameObjects.Text;
@@ -39,6 +40,11 @@ export class MainScene extends Phaser.Scene {
     super('main-scene');
   }
 
+  preload() {
+    const tempBestScore = localStorage.getItem('kingcalorie-bestscore');
+    this.bestScore = tempBestScore === null ? 0 : +tempBestScore;
+  }
+
   create(): void {
     const healthBarContainer = this.add
       .rectangle(this.scale.width / 2, 26, 360, 30, 0xffffff)
@@ -55,7 +61,7 @@ export class MainScene extends Phaser.Scene {
       .setDepth(1)
       .setOrigin(0, 0.5);
 
-    this.scoreText = this.add.text(16, 16, 'kcal: 0', { fontSize: '24px', color: '#000' }).setDepth(1);
+    this.scoreText = this.add.text(16, 16, 'time: 0', { fontSize: '24px', color: '#000' }).setDepth(1);
     this.kcalInfoText = this.add
       .text(healthBarContainer.x + healthBarContainer.width / 2 + 16, 16, '', { fontSize: '24px', color: '#000' })
       .setDepth(1)
@@ -163,7 +169,12 @@ export class MainScene extends Phaser.Scene {
     this.timeSinceStart += delta;
 
     this.score = this.timeSinceStart / 1000;
-    this.scoreText.setText(`time: ${this.score.toFixed(1)}`);
+    let scoreText = `time: ${this.score.toFixed(2)}`;
+
+    if (this.bestScore > 0) {
+      scoreText += `\nbest: ${this.bestScore.toFixed(2)}`;
+    }
+    this.scoreText.setText(scoreText);
 
     this.kcalText.setText(`${Math.max(this.health, this.healthMin)} kcal`);
     this.drawHealthBar();
@@ -251,6 +262,10 @@ export class MainScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(0xbababa);
     this.cameras.main.setAlpha(0.5);
     this.scene.launch('lose-scene', { score: this.score, health: this.health });
+
+    this.bestScore = Math.max(this.score, this.bestScore);
+
+    localStorage.setItem('kingcalorie-bestscore', this.bestScore.toString());
 
     this.score = 0;
 
