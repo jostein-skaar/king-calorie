@@ -9,6 +9,7 @@ export function createGameConfig(
   // scalingModePhaser: Phaser.Scale.ScaleModes,
   // centerModePhaser: Phaser.Scale.Center,
   isDebug: boolean
+  
 ): Phaser.Types.Core.GameConfig {
   const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
@@ -19,7 +20,7 @@ export function createGameConfig(
     backgroundColor: 0x87ceeb,
     autoFocus: true,
     parent: 'game',
-
+    fps: { limit: 60 },
     render: {
       antialias: true,
       // antialias: true, // Using this to prevent flickering presents when moving (at least on iPhone with pixelRatio 3).
@@ -33,8 +34,9 @@ export function createGameConfig(
       default: 'arcade',
       arcade: {
         gravity: { y: 300 },
-        debug: isDebug,
+        debug: isDebug,        
       },
+      
     },
 
     scale: {

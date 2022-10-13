@@ -99,9 +99,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    let losingWeight = 2;
-
-    const adjustedDelta = delta/16;
+    let losingWeight = 2;    
 
     if (this.input.activePointer.isDown) {
       const { x } = this.input.activePointer;
@@ -165,8 +163,8 @@ export class MainScene extends Phaser.Scene {
     if (this.timeSinceFoodLimit <= 0) {
       this.timeSinceFoodLimit = 250;
     }
-console.log(delta, adjustedDelta);
-    this.health -= losingWeight*adjustedDelta*0.8;
+
+    this.health -= losingWeight;
     this.health = Math.floor(this.health);
 
     // console.log(delta);
